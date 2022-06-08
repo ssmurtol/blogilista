@@ -7,16 +7,18 @@ const Blog = require('../models/blog')
 
 const initialBlogs = [
   {
+    id: 1,
     title: "Otsikko1",
     author: "Masa Mikkonen",
     url: "http://esimerkki.fi",
     likes: 200
   },
   {
+    id: 2,
     title: "Otsikko2",
     author: "Maija Meikäläinen",
     url: "http://esimerkki.fi",
-    likes: 50
+    likes: 100
   },
 ]
   
@@ -43,10 +45,10 @@ test('all blogs are returned', async () => {
 
 test('a valid blog can be added ', async () => {
   const newBlog = {
+    id: 3,
     title: "Otsikko3",
     author: "Matti Meikäläinen",
     url: "http://esimerkki.fi",
-    likes: 100
   }
 
   await api
@@ -58,6 +60,14 @@ test('a valid blog can be added ', async () => {
   const response = await api.get('/api/blogs')
 
   expect(response.body).toHaveLength(initialBlogs.length + 1)
+})
+
+test('there is an valid id', () => {
+    initialBlogs.map(blog => expect(blog.id).toBeDefined())
+})
+
+test('likes is defined or 0', () => {
+    initialBlogs.map(blog => expect(blog.likes).toBeDefined())
 })
 
 afterAll(() => {
