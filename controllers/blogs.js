@@ -31,6 +31,18 @@ blogsRouter.post('/', (request, response, next) => {
     likes: body.likes
   })
 
+  if (!body.title) {
+    return response.status(400).json({ 
+      error: 'title missing' 
+    })
+  }
+
+  if (!body.url) {
+    return response.status(400).json({ 
+      error: 'url missing' 
+    })
+  }
+
   blog.save()
     .then(savedBlog => {
       response.status(201).json(savedBlog)
@@ -50,8 +62,7 @@ blogsRouter.put('/:id', (request, response, next) => {
   const body = request.body
 
   const blog = {
-    content: body.content,
-    important: body.important,
+    likes: body.likes,
   }
 
   Blog.findByIdAndUpdate(request.params.id, blog, { new: true })

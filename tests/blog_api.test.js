@@ -45,6 +45,22 @@ test('a valid blog can be added ', async () => {
   expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length + 1)
 })
 
+test('blog without title is not added', async () => {
+  const newBlog = {
+    author: 'Matti Meikäläinen',
+    url: 'http://esimerkki.fi',
+  }
+
+  await api
+    .post('/api/blogs')
+    .send(newBlog)
+    .expect(400)
+
+  const blogsAtEnd = await helper.blogsInDb()
+
+  expect(blogsAtEnd).toHaveLength(helper.initialBlogs.length)
+})
+
 test('a blog can be deleted', async () => {
   const blogsAtStart = await helper.blogsInDb()
   const blogToDelete = blogsAtStart[0]
