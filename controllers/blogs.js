@@ -9,7 +9,7 @@ blogsRouter.get('/', (request, response) => {
     })
 })
 
-/*blogsRouter.get('/:id', (request, response, next) => {
+blogsRouter.get('/:id', (request, response, next) => {
     Blog.findById(request.params.id)
     .then(blog => {
       if (blog) {
@@ -20,7 +20,6 @@ blogsRouter.get('/', (request, response) => {
     })
     .catch(error => next(error))
 })
-*/
 
 blogsRouter.post('/', (request, response, next) => {
   const body = request.body
@@ -39,7 +38,7 @@ blogsRouter.post('/', (request, response, next) => {
     .catch(error => next(error))
   })
 
-/*blogsRouter.delete('/:id', (request, response, next) => {
+blogsRouter.delete('/:id', (request, response, next) => {
     Blog.findByIdAndRemove(request.params.id)
     .then(() => {
       response.status(204).end()
@@ -60,6 +59,6 @@ blogsRouter.put('/:id', (request, response, next) => {
       response.json(updatedBlog)
     })
     .catch(error => next(error))
-})*/
+})
 
 module.exports = blogsRouter
