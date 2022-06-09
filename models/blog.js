@@ -6,7 +6,7 @@ const blogSchema = mongoose.Schema({
     url: String,
     likes: Number || 0,
     user: {
-      type: mongoose.Schema.Types.String,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User'
     }
   })
