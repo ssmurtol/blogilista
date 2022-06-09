@@ -21,20 +21,6 @@ const blogSchema = mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-const blog = new Blog({
-    title: "Otsikko",
-    author: "Matti Meikäläinen",
-    url: "http://esimerkki.fi",
-    likes: 100
-})
-
-if ( false ) {
-    blog.save().then(() => {
-    console.log('blog saved!')
-    mongoose.connection.close()
-  })
-}
-
 Blog.find({}).then(result => {
   result.forEach(blog => {
     console.log(blog)
